@@ -96,11 +96,36 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { defineComponent } from '@vue/composition-api'
+import { useStore } from '../plugins/store'
 
-@Component
-export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
-}
+// @Component
+// export default class HelloWorld extends Vue {
+//   @Prop() private msg!: string;
+//   setup(props: any, { root }: any) {
+//     const store = useStore()
+//     const test = root.$store.test
+//     console.log('hello', root.$store)
+//     return {
+//       store,
+//       test
+//     }
+//   }
+//   mounted() {
+//     console.log('mounted', this.$store)
+//   }
+// }
+
+export default defineComponent({
+  props: {
+    msg: String
+  },
+  setup(props: any, { root }: any) {
+    const store = useStore()
+    // console.log('helloword', store, props)
+    return { store }
+  }
+})
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

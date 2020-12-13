@@ -1,20 +1,30 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { defineComponent } from '@vue/composition-api'
 import HelloWorld from "./components/HelloWorld.vue";
+import Home from "./views/Home.vue";
 
-@Component({
+import { useRouter } from './plugins/router'
+export default defineComponent({
   components: {
-    HelloWorld
+    HelloWorld,
+    Home
+  },
+  setup(props: any, { root }: any) {
+    // const router = useRouter()
+    console.log('app', root.$router)
+    // return {
+    //   router
+    // }
   }
 })
-export default class App extends Vue {}
 </script>
 
 <style lang="scss">
